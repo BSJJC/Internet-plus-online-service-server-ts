@@ -63,7 +63,7 @@ const loginAdministrator = asyncHandler(async (req: Request, res: Response) => {
       token: generateToken(administrator.id, 1, "d"),
     });
   } else {
-    res.status(400);
+    res.status(400).json({ reason: "Email or password wrong" });
     throw new Error("Invalid credentials");
   }
 });

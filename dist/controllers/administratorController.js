@@ -68,11 +68,16 @@ const loginAdministrator = (0, express_async_handler_1.default)((req, res) => __
         });
     }
     else {
-        res.status(400);
+        res.status(400).json({ reason: "Email or password wrong" });
         throw new Error("Invalid credentials");
     }
 }));
 exports.loginAdministrator = loginAdministrator;
+/**
+ * @desc            Get administrator data
+ * @route           GET /api/administrator/administratorData
+ * @access        Public
+ */
 const getAdministratoreData = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //@ts-ignore
     const { _id, name, email } = yield administratorModel_1.default.findById(req.body.administrator.id);
