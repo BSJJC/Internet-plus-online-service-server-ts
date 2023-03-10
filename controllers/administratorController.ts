@@ -68,6 +68,11 @@ const loginAdministrator = asyncHandler(async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @desc            Get administrator data
+ * @route           GET /api/administrator/administratorData
+ * @access        Public
+ */
 const getAdministratoreData = asyncHandler(
   async (req: Request, res: Response) => {
     //@ts-ignore

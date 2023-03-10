@@ -3,6 +3,10 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import administratorModel from "../models/administratorModel";
 
+
+/**
+ * @description       Verify token
+*/
 const protect = asyncHandler(async (req: Request, res: Response, next) => {
   let token: string = "";
 
