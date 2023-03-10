@@ -1,12 +1,9 @@
 import express, { Express, Request, Response } from "express";
 import "colors";
 
+const dotenv = require("dotenv").config();
+const port: number = (process.env.PORT as unknown as number) || 5000;
 const app: Express = express();
-const port: number = 5000;
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
 
 app.listen(port, () => {
   console.log(
