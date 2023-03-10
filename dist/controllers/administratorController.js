@@ -24,16 +24,13 @@ const administratorModel_1 = __importDefault(require("../models/administratorMod
  */
 const registerAdministrator = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password } = req.body;
-    // Check if administrator exists
     const administratorExists = yield administratorModel_1.default.findOne({ email });
     if (administratorExists) {
         res.status(400);
         throw new Error("Administrator already exists");
     }
-    //  Hash password
     const salt = yield bcryptjs_1.default.genSalt(10);
     const hashedPassword = yield bcryptjs_1.default.hash(password, salt);
-    //  Create administrator
     const administrator = yield administratorModel_1.default.create({
         name,
         email,
@@ -60,7 +57,6 @@ exports.registerAdministrator = registerAdministrator;
  */
 const loginAdministrator = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
-    // Check for administrator email
     const administrator = yield administratorModel_1.default.findOne({ email });
     if (administrator &&
         (yield bcryptjs_1.default.compare(password, administrator.password))) {

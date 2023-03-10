@@ -14,18 +14,15 @@ const registerAdministrator = asyncHandler(
   async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
 
-    // Check if administrator exists
     const administratorExists = await administratorModel.findOne({ email });
     if (administratorExists) {
       res.status(400);
       throw new Error("Administrator already exists");
     }
 
-    //  Hash password
     const salt: string = await bcrypt.genSalt(10);
     const hashedPassword: string = await bcrypt.hash(password, salt);
 
-    //  Create administrator
     const administrator = await administratorModel.create({
       name,
       email,
@@ -54,7 +51,6 @@ const registerAdministrator = asyncHandler(
 const loginAdministrator = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-  // Check for administrator email
   const administrator = await administratorModel.findOne({ email });
   if (
     administrator &&
