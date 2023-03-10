@@ -78,3 +78,8 @@ const administratorModel_1 = __importDefault(require("@/models/administratorMode
         }
     });
 });
+(0, express_async_handler_1.default)(function getAdministratoreData(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { _id, name, emial } = yield administratorModel_1.default.findById();
+    });
+});

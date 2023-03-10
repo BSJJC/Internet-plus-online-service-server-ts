@@ -69,3 +69,7 @@ asyncHandler(async function loginAdministrator(req: Request, res: Response) {
     throw new Error("Invalid credentials");
   }
 });
+
+asyncHandler(async function getAdministratoreData(req: Request, res: Response) {
+  const { _id, name, emial } = await administratorModel.findById();
+});
