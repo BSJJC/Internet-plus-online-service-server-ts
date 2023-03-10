@@ -73,7 +73,18 @@ const loginAdministrator = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getAdministratoreData = asyncHandler(
-  async (req: Request, res: Response) => {}
+  async (req: Request, res: Response) => {
+    //@ts-ignore
+    const { _id, name, email } = await administratorModel.findById(
+      req.body.administrator.id
+    );
+
+    res.status(200).json({
+      id: _id,
+      name,
+      email,
+    });
+  }
 );
 
-export { registerAdministrator, loginAdministrator };
+export { registerAdministrator, loginAdministrator, getAdministratoreData };

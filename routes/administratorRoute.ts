@@ -2,12 +2,14 @@ import { Router } from "express";
 import {
   registerAdministrator,
   loginAdministrator,
+  getAdministratoreData,
 } from "../controllers/administratorController";
+import protect from "../middleware/authMiddleware";
 
-const router = Router();
+const administratorRouter = Router();
 
-router.post("/", registerAdministrator);
-router.post("/login", loginAdministrator);
-// router.get("/administratorData", getAdministratoreData);
+administratorRouter.post("/", registerAdministrator);
+administratorRouter.post("/login", loginAdministrator);
+administratorRouter.get("/administratorData", protect, getAdministratoreData);
 
-export default router;
+export default administratorRouter;
