@@ -1,7 +1,7 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import "colors";
+require("dotenv").config();
 
-const dotenv = require("dotenv").config();
 const port: number = (process.env.PORT as unknown as number) || 5000;
 const app: Express = express();
 
