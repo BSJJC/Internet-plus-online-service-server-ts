@@ -19,7 +19,6 @@ app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cors_1.default)({ origin: "*" }));
 app.use("/api/administrator", administratorRoute_1.default);
 app.use("/api/administratorAvater", administratorAvaterRoute_1.default);
-app.set("view engine", "ejs");
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`.cyan.underline);
 });

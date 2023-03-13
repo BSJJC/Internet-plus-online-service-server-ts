@@ -20,8 +20,6 @@ app.use(cors({ origin: "*" }));
 app.use("/api/administrator", administratorRouter);
 app.use("/api/administratorAvater", administratorAvaterRoute);
 
-app.set("view engine", "ejs");
-
 app.listen(port, () => {
   console.log(
     `⚡️[server]: Server is running at http://localhost:${port}`.cyan.underline

@@ -14,9 +14,7 @@ const uploadAdministratorAvater = asyncHandler(
 );
 
 const getAdministratorAvater = asyncHandler(
-  async (req: Request, res: Response) => {
-   
-  }
+  async (req: Request, res: Response) => {}
 );
 
 export { uploadAdministratorAvater, getAdministratorAvater };
