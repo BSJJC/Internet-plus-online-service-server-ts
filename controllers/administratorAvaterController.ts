@@ -6,7 +6,13 @@ import administratorAvaterModel from "../models/administratorAvaterModel";
 const uploadAdministratorAvater = asyncHandler(
   async (req: Request, res: Response) => {
     if (req.file) {
-      res.send("Single file uploaded successfully");
+      //@ts-ignore
+      const id = req.file.id;
+      const test = await administratorAvaterModel.create({
+        fileId: id,
+      });
+
+      res.json(test);
     } else {
       res.status(400).send("Please upload a valid image");
     }
@@ -14,7 +20,13 @@ const uploadAdministratorAvater = asyncHandler(
 );
 
 const getAdministratorAvater = asyncHandler(
-  async (req: Request, res: Response) => {}
+  async (req: Request, res: Response) => {
+    const avaterId = req.body.id;
+
+    const test = await administratorAvaterModel.find({ fileId: avaterId });
+
+    res.json({ test });
+  }
 );
 
 export { uploadAdministratorAvater, getAdministratorAvater };
