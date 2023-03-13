@@ -27,6 +27,7 @@ const registerAdministrator = asyncHandler(
       name,
       email,
       password: hashedPassword,
+      avater: "defaultAvater.png",
     });
 
     if (administrator) {
@@ -35,6 +36,7 @@ const registerAdministrator = asyncHandler(
         name: administrator.name,
         email: administrator.email,
         token: generateToken(administrator.id, 1, "d"),
+        avater: "defaultAvater.png",
       });
     } else {
       res.status(400);
@@ -61,6 +63,7 @@ const loginAdministrator = asyncHandler(async (req: Request, res: Response) => {
       name: administrator.name,
       email: administrator.email,
       token: generateToken(administrator.id, 1, "d"),
+      avater: administrator.avater,
     });
   } else {
     res.status(400).json({ reason: "Email or password wrong" });
@@ -76,7 +79,7 @@ const loginAdministrator = asyncHandler(async (req: Request, res: Response) => {
 const getAdministratoreData = asyncHandler(
   async (req: Request, res: Response) => {
     //@ts-ignore
-    const { _id, name, email } = await administratorModel.findById(
+    const { _id, name, email, avater } = await administratorModel.findById(
       req.body.administrator.id
     );
 
@@ -84,6 +87,7 @@ const getAdministratoreData = asyncHandler(
       id: _id,
       name,
       email,
+      avater,
     });
   }
 );

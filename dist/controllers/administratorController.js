@@ -35,6 +35,7 @@ const registerAdministrator = (0, express_async_handler_1.default)((req, res) =>
         name,
         email,
         password: hashedPassword,
+        avater: "defaultAvater.png",
     });
     if (administrator) {
         res.status(200).json({
@@ -42,6 +43,7 @@ const registerAdministrator = (0, express_async_handler_1.default)((req, res) =>
             name: administrator.name,
             email: administrator.email,
             token: (0, generateToken_1.default)(administrator.id, 1, "d"),
+            avater: "defaultAvater.png",
         });
     }
     else {
@@ -65,6 +67,7 @@ const loginAdministrator = (0, express_async_handler_1.default)((req, res) => __
             name: administrator.name,
             email: administrator.email,
             token: (0, generateToken_1.default)(administrator.id, 1, "d"),
+            avater: administrator.avater,
         });
     }
     else {
@@ -80,11 +83,12 @@ exports.loginAdministrator = loginAdministrator;
  */
 const getAdministratoreData = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //@ts-ignore
-    const { _id, name, email } = yield administratorModel_1.default.findById(req.body.administrator.id);
+    const { _id, name, email, avater } = yield administratorModel_1.default.findById(req.body.administrator.id);
     res.status(200).json({
         id: _id,
         name,
         email,
+        avater,
     });
 }));
 exports.getAdministratoreData = getAdministratoreData;

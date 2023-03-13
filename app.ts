@@ -1,10 +1,12 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import "colors";
-import connectDB from "./config/db";
-import administratorRouter from "./routes/administratorRoute";
 import cors from "cors";
+import connectDB from "./config/db";
 dotenv.config();
+
+import administratorRouter from "./routes/administratorRoute";
+import administratorAvaterRoute from "./routes/administratorAvaterRoute";
 
 connectDB();
 
@@ -13,13 +15,12 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors({ origin: "*" }));
 
 app.use("/api/administrator", administratorRouter);
+app.use("/api/administratorAvater", administratorAvaterRoute);
+
+app.set("view engine", "ejs");
 
 app.listen(port, () => {
   console.log(

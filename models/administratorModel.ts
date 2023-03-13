@@ -4,6 +4,7 @@ interface Administrator {
   name: string;
   email: string;
   password: string;
+  avater: string;
 }
 
 const administratorSchema = new Schema<Administrator>({
@@ -18,6 +19,10 @@ const administratorSchema = new Schema<Administrator>({
   password: {
     type: String,
     required: [true, "Pleace add a password"],
+  },
+  avater: {
+    type: String,
+    required: false,
   },
 });
 

@@ -14,6 +14,10 @@ const administratorSchema = new mongoose_1.Schema({
         type: String,
         required: [true, "Pleace add a password"],
     },
+    avater: {
+        type: String,
+        required: false,
+    },
 });
 const administratorModel = (0, mongoose_1.model)("Administrator", administratorSchema);
 exports.default = administratorModel;
